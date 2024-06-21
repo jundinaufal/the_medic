@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Medic</title>
+    <style>
+    *{
+    text-decoration: none;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    /* margin: 0px;
+    padding: 0px; */
+    font-family: 'Open Sans',sans-serif;
+    background-color: whitesmoke;
+}
+
+.wrapper{
+    width: 1100px;
+    margin: auto;
+    position: relative;
+   
+}
+.logo a{
+    font-size: 50px;
+    font-weight:bold;
+    float: left;
+    font-family: 'Courier New', Courier, monospace;
+    color: navy;
+
+}
+.menu{
+    float: right;
+}
+
+nav{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    line-height: 80px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    background: white;
+}
+
+nav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav ul li{
+    float: left;
+}
+
+nav ul li a{
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    padding: 0px 16px 0px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover{
+    text-decoration: underline;
+}
+
+a.tbl-biru{
+    background: navy;
+    border-radius: 20px;
+    margin-top: 20px;
+    padding: 15px 20px 15px 20px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+a.tbl-biru:hover{
+    background: whitesmoke;
+    text-decoration: none;
+    color: navy;
+}
+/* card 1 */
+
+.section-card{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    column-gap: 48px;
+    width: 80%;
+    margin: 60px auto;
+    background-color:navy
+}
+
+.card{
+    background-color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+}
+
+.card--img{
+    width: 100%;
+    display: block;
+}
+
+.card--details{
+    padding: 10px 0px;
+}
+
+.card--details ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    width: 80%;
+    padding: 20px 0px;
+}
+
+.card--details ul li{
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    padding: 12px 0px;
+}
+
+.card--details ul li:not(:last-child){
+    border-bottom: 1px solid #bbb;
+}
+
+.btn{
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: #eee;
+    font-weight: 500;
+    display: block;
+    padding: 14px 28px;
+    border-radius: 100px;
+    margin-left: 50%;
+    transform:  translate(-50%);
+    margin-bottom: 30px;
+}
+
+.card-1 .btn{
+    background-color: navy;
+}
+
+.card-2 .btn{
+    background-color: navy;
+}
+
+.card-3 .btn{
+    background-color: navy;
+}
+
+h1{
+    text-align: center;
+    color: navy;
+}
+
+.popup{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+}
+
+.popup-content{
+    width: 50%;
+    background-color: #eee;
+    box-shadow:  0 20px 40px rgba(0, 0, 0, .2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(.25);
+    opacity: 0;
+    transition: all .5s .1s;
+}
+
+.popup-img{
+    display: flex;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.popup-img img{
+    display: block;
+    width: 33.3333%;
+}
+
+.popup-header{
+    text-align: center;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 36px;
+}
+
+.popup-header h1{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.popup-header h2{
+    font-size: 20px;
+}
+
+.popup-text{
+    padding: 0 36px;
+    line-height: 1.4;
+}
+
+.popup-text p:not(:last-child){
+    margin-bottom: 16px;
+}
+
+.btn-popup{
+    background-color: #333;
+    margin-top: 30px;
+}
+
+#popup:target{
+opacity: 1;
+visibility: visible;
+}
+
+#popup:target .popup-content{
+    opacity: 1;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.popup-close:link,
+.popup-close:visited{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 30px;
+    display: inline-block;
+    line-height: 1;
+    transition:all .3s;
+}
+
+.popup-close:hover,
+.popup-close:active{
+    color: #555;
+}
+
+    </style>
+</head>
+<body>
+    <!-- ini navbar -->
+    <nav>
+        <div class="wrapper">
+            <div class="logo"><a href="">TheMedic</a></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/doctorList">Our Doctors</a></li>
+                    <li><a href="/medicines">Medicine</a></li>
+                    <li><a href="/login" class="tbl-biru">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1>Specialist Doctors</h1>
+    <!-- ini untuk card dokter -->
+    <% doctors.forEach(doctor => { %>
+        <section class="section-card">
+        <% if (doctor.classification === 'Specialist') { %>
+                <div class="card card-<%= doctor.id %>">
+                    <img src="<%= doctor.imageUrl %>" alt="" class="card--img">
+                    <div class="card--details">
+                            <ul>
+                                <li><%= doctor.fullName %></li>
+                                <li><%= doctor.age %></li>
+                                <li><%= doctor.classification %></li>
+                                <li><%= doctor.gender %></li>
+                            </ul>
+                            <a href="#popup" class="btn">Consultation</a>
+                    </div>
+                </div>
+        <% } %>
+    <% }); %>
+    </section>
+        
+    <h1>Dentist</h1>
+    <!-- ini untuk card dokter -->
+    <% doctors.forEach(doctor => { %>
+        <section class="section-card">
+        <% if (doctor.classification === 'Dentist') { %>
+                <div class="card card-<%= doctor.id %>">
+                    <img src="<%= doctor.imageUrl %>" alt="" class="card--img">
+                    <div class="card--details">
+                            <ul>
+                                <li><%= doctor.fullName %></li>
+                                <li><%= doctor.age %></li>
+                                <li><%= doctor.classification %></li>
+                                <li><%= doctor.gender %></li>
+                            </ul>
+                            <a href="#popup" class="btn">Consultation</a>
+                    </div>
+                </div>
+        <% } %>
+    <% }); %>
+    </section>
+
+    <h1>General Doctor</h1>
+    <!-- ini untuk card dokter -->
+    <% doctors.forEach(doctor => { %>
+        <section class="section-card">
+        <% if (doctor.classification === 'General Doctor') { %>
+                <div class="card card-<%= doctor.id %>">
+                    <img src="<%= doctor.imageUrl %>" alt="" class="card--img">
+                    <div class="card--details">
+                            <ul>
+                                <li><%= doctor.fullName %></li>
+                                <li><%= doctor.age %></li>
+                                <li><%= doctor.classification %></li>
+                                <li><%= doctor.gender %></li>
+                            </ul>
+                            <a href="#popup" class="btn">Consultation</a>
+                    </div>
+                </div>
+        <% } %>
+    <% }); %>
+    </section>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <div class="popup-img">
+                <img src="https://hasan.themexlab.com/new/hope-medical/hope-medical/images/resource/team-1.jpg" alt="">
+                <img src="https://hasan.themexlab.com/new/hope-medical/hope-medical/images/resource/team-2.jpg" alt="">
+                <img src="https://hasan.themexlab.com/new/hope-medical/hope-medical/images/resource/team-3.jpg" alt="">
+                <a href="#" class="popup-close">&times;</a>
+            </div>
+            <div class="popup-header">
+                <h1>Start Consultion Now!</h1>
+                <h2>Please read these terms before Consultion</h2>
+            </div>
+            <div class="popup-text">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis dolorem sapiente eos voluptatibus cupiditate. Fuga accusamus ducimus recusandae. Hic, fugit.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, maiores eius culpa tempore esse accusantium dolorum nostrum. Quia, sit. At ad minus in aliquam rem consequuntur quasi ducimus, perspiciatis provident!</p>
+            </div>
+            <a href="" class="btn btn-popup">Consultion Now</a>
+        </div>
+    </div>
+</body>
+</html>
